@@ -4,7 +4,7 @@ import { NoTaskComponent } from "./tasks/no-task/no-task.component";
 
 export const routes: Routes = [
     {
-        path: '', // <your-domain>/tasks
+        path: '', // <your-domain>/
         component: NoTaskComponent
     },
     {
