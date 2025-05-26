@@ -1,6 +1,6 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
-import { ActivatedRouteSnapshot, ResolveFn, RouterLink, RouterOutlet, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, ResolveFn, RouterLink, RouterOutlet, RouterStateSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-user-tasks',
@@ -9,18 +9,24 @@ import { ActivatedRouteSnapshot, ResolveFn, RouterLink, RouterOutlet, RouterStat
   templateUrl: './user-tasks.component.html',
   styleUrl: './user-tasks.component.css',
 })
-export class UserTasksComponent /* implements OnInit */ {
+export class UserTasksComponent implements OnInit {
   // userId = input.required<string>();
   // userName = '';
   userName = input.required<string>();
   message = input.required<string>();
   // private usersService = inject(UsersService);
-  // private activatedRoute = inject(ActivatedRoute);
+  private activatedRoute = inject(ActivatedRoute);
   // private destroyRef = inject(DestroyRef);
 
   // userName = computed(() => this.usersService.users.find(u => u.id === this.userId())?.name);
 
-  // ngOnInit(): void {
+  ngOnInit(): void {
+    this.activatedRoute.data.subscribe({
+      next: data => {
+        console.log(data);
+      }
+    })
+
   //   console.log('Input Data: ' + this.message());
   //   console.log(this.activatedRoute);
   //   console.log(this.activatedRoute.snapshot);
@@ -32,7 +38,7 @@ export class UserTasksComponent /* implements OnInit */ {
   //   });
 
   //   this.destroyRef.onDestroy(() => subscription.unsubscribe());
-  // }
+  }
 }
 
 export const resolveUserName: ResolveFn<string> = (
