@@ -8,7 +8,7 @@ import { inject } from "@angular/core";
 const dummyCanMatch: CanMatchFn = (route, segments) => {
     const router = inject(Router);
     const shouldGetAccess = Math.random();
-    if (shouldGetAccess < 0.5) { // 50%
+    if (shouldGetAccess < 1) { // 0.5 -> 50%, 1 -> 100%
         return true;
     }
     return new RedirectCommand(router.parseUrl('/unauthorized'));
